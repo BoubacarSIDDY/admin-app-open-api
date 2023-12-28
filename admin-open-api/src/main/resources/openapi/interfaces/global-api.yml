@@ -1,0 +1,45 @@
+openapi: "3.0.0"
+
+info:
+  title: API de gestion des utilisateurs, roles et produits # ça sera utiliser pour les endPoint @RequestMapping("${openapi.aPIDeTest.base-path:/service/api}")
+  version: "1.0"
+  description: Documentation du microservices de la gestion des utilisateurs,roles et produits
+
+servers:
+  - url: http://localhost:8080/backend-admin/api
+
+tags:
+  - name: AppRoles
+    description: AppRoles specific data.
+  - name: AppUser
+    description: App User specific data.
+  - name: Produit
+    description: Produit specific data.
+paths:
+
+  ##############
+  ## API AppRoles ##
+  ##############
+
+  /roles:
+    $ref: '../components/api/app-roles.yml#/paths/~1roles' # ~1 => signifie slash(/)
+  /roles/{id}:
+    $ref: '../components/api/app-roles.yml#/paths/~1roles-reference'
+
+  ##############
+  ## API AppUser ##
+  ##############
+
+  /users:
+    $ref: '../components/api/app-users.yml#/paths/~1users' # ~1 => signifie slash(/)
+  /users/{id}:
+    $ref: '../components/api/app-users.yml#/paths/~1users-reference'
+
+  ##############
+  ## API Produit ##
+  ##############
+
+  /produits:
+    $ref: '../components/api/produits.yml#/paths/~1produits' # ~1 => signifie slash(/)
+  /produits/{id}:
+    $ref: '../components/api/produits.yml#/paths/~1produits-reference'

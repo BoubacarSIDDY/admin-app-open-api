@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  mysql-backend-admin-db:
+    image: mysql:latest
+    container_name: container_mysql-backend-admin-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: admin-db
+      MYSQL_USER: diallo
+      MYSQL_PASSWORD: passer
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+
+
+  phpmyadmin-admin-db:
+    container_name: container_phpmyadmin-admin-db
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8085:80
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: mysql-backend-admin-db
+      PMA_USER: diallo
+      PMA_PASSWORD: passer
+    depends_on:
+      - mysql-backend-admin-db
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local
