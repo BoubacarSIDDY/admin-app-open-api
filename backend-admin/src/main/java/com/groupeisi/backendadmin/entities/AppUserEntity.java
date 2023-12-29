@@ -14,7 +14,7 @@ import java.util.List;
 public class AppUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idUser;
     @Column(nullable = false, length = 100)
     private String nom;
     @Column(nullable = false, length = 200)
@@ -24,7 +24,8 @@ public class AppUserEntity {
     @Column(nullable = false, length = 255)
     private String password;
     private int etat;
+    @OneToMany(mappedBy = "appUserEntity")
     private List<ProduitEntity> produitEntities;
-    @ManyToMany(mappedBy = "appUserEntities")
-    private List<AppRolesEntity> appRolesEntities;
+//    @ManyToMany(mappedBy = "appUserEntities")
+//    private List<AppRolesEntity> appRolesEntities;
 }

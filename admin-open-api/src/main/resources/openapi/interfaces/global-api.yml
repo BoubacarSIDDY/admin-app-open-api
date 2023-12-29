@@ -21,19 +21,19 @@ paths:
   ## API AppRoles ##
   ##############
 
-  /roles:
-    $ref: '../components/api/app-roles.yml#/paths/~1roles' # ~1 => signifie slash(/)
-  /roles/{id}:
-    $ref: '../components/api/app-roles.yml#/paths/~1roles-reference'
-
-  ##############
-  ## API AppUser ##
-  ##############
-
-  /users:
-    $ref: '../components/api/app-users.yml#/paths/~1users' # ~1 => signifie slash(/)
-  /users/{id}:
-    $ref: '../components/api/app-users.yml#/paths/~1users-reference'
+#  /roles:
+#    $ref: '../components/api/app-roles.yml#/paths/~1roles' # ~1 => signifie slash(/)
+#  /roles/{id}:
+#    $ref: '../components/api/app-roles.yml#/paths/~1roles-reference'
+#
+#  ##############
+#  ## API AppUser ##
+#  ##############
+#
+#  /users:
+#    $ref: '../components/api/app-users.yml#/paths/~1users' # ~1 => signifie slash(/)
+#  /users/{id}:
+#    $ref: '../components/api/app-users.yml#/paths/~1users-reference'
 
   ##############
   ## API Produit ##

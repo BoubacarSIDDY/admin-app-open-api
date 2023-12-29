@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder
 public class ProduitEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idProduit;
     @Column(nullable = false, length = 150)
     private String name;
     private double qtyStock;

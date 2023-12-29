@@ -1,4 +1,6 @@
 package com.groupeisi.backendadmin.web;
 
-public class ProduitsController {
+import com.groupeisi.generated.api.ProduitApi;
+
+public class ProduitsController implements ProduitApi {
 }

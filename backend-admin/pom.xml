@@ -16,6 +16,13 @@
 	<properties>
 		<java.version>17</java.version>
 		<org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+		<javax.version>4.0.1</javax.version>
+		<!--openApi -->
+		<openapi.version>1.0-SNAPSHOT</openapi.version>
+		<openapi.dir>openapi</openapi.dir>
+		<openapi-generator.version>4.3.1</openapi-generator.version>
+		<swagger-annotations.version>1.6.7</swagger-annotations.version>
+		<openapi-validator.version>2.0.18</openapi-validator.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,6 +66,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.version}</version>
+		</dependency>
 		<!-- Pour le mapping -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -93,14 +114,39 @@
 			</exclusions>
 		</dependency>
 		<!--  pour les logs et Aspect programming   -->
+		<!-- openapi -->
+		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>${swagger-annotations.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<!-- spring doc openapi -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		<!-- end spring doc openapi -->
 	</dependencies>
 
 	<build>
+		<finalName>Backend-admin</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<!-- Exclusion de Lombok intégré par spring boot -->
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -139,6 +185,48 @@
 						<arg>-Amapstruct.defaultComponentModel=spring</arg>
 					</compilerArgs>
 				</configuration>
+			</plugin>
+
+			<!-- OpenApi - Génération des API et des models -->
+			<plugin>
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>${openapi-generator.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.groupeisi</groupId>
+						<artifactId>admin-open-api</artifactId>
+						<classifier>api</classifier>
+						<version>${openapi.version}</version>
+					</dependency>
+				</dependencies>
+				<!-- Génération des models (true) et des api (true)-->
+				<executions>
+					<execution>
+						<id>generate-api</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<generatorName>spring</generatorName> <!-- pour backend spring -->
+							<inputSpec>${openapi.dir}/interfaces/global-api.yml</inputSpec>
+							<generateModels>true</generateModels> <!-- cette valeur peut etre a false tout depend du module -->
+							<generateApis>true</generateApis> <!-- cette valeur peut etre a false tout depend du module -->
+							<generateSupportingFiles>true</generateSupportingFiles>
+							<output>target/generated-sources</output>
+							<configOptions>
+								<sourceFolder>src/gen/main/java</sourceFolder>
+								<java8>true</java8>
+								<modelPackage>com.groupeisi.generated.model</modelPackage>
+								<apiPackage>com.groupeisi.generated.api</apiPackage>
+								<delegatePattern>true</delegatePattern>
+								<unhandledException>true</unhandledException>
+								<useTags>true</useTags>
+							</configOptions>
+							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

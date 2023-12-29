@@ -1,9 +1,12 @@
 type: object
 properties:
-  id:
+  idProduit:
     type: integer
     description: Fonctionnel id of the classe
-    format: int64
+    format: int32
   name:
     type: string
     description: the name of the classe
+  user:
+    description: the use who added this product
+    $ref: '../app-users/AppUserDTO.yml'

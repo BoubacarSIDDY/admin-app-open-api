@@ -1,0 +1,7 @@
+type: object
+properties:
+  produitsList:
+    type: array
+    description: The List of the Products
+    items:
+      $ref: './ProduitDTO.yml' # va indexer ClasseDTO

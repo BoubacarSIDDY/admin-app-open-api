@@ -1,0 +1,27 @@
+type: object
+properties:
+  idUser:
+    type: integer
+    description: Fonctionnel id of the classe
+    format: int32
+  nom:
+    type: string
+    description: the name of the user
+  prenom:
+    type: string
+    description: the firstName of the user
+  email:
+    type: string
+    description: the email of the user
+  password:
+    type: string
+    description: the password of the user
+  etat:
+    type: integer
+    description: the state of the user
+    format: int32
+  produits:
+    type: array
+    items:
+      $ref: '../produits/ProduitDTO.yml'
+      description: product list of user

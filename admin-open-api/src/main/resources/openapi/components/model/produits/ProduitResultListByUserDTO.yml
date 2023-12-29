@@ -1,0 +1,11 @@
+type: object
+properties:
+  idUser:
+    type: integer
+    description: Fonctionnel id of the customer
+    format: int32
+  produitsList:
+    type: array
+    description: The List of the ProduitsResultList by a user
+    items:
+      $ref: './ProduitDTO.yml'
