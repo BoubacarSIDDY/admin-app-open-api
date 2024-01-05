@@ -1,12 +1,15 @@
 type: object
 properties:
-  idProduit:
+  id:
     type: integer
     description: Fonctionnel id of the classe
     format: int32
   name:
     type: string
-    description: the name of the classe
+    description: the product's name
+  qteStock:
+    type: number
+    description: the stock quantity
   user:
-    description: the use who added this product
-    $ref: '../app-users/AppUserDTO.yml'
+    description: The user who added this product
+    $ref: '../users/UserDTO.yml'

@@ -1,0 +1,69 @@
+openapi: "3.0.0"
+
+info:
+  title: API User
+  version: "1.0"
+  description: User API
+
+servers:
+  - url: http://localhost:8080/backend-admin/api
+
+tags:
+  - name: User
+    description: User specific data.
+
+paths:
+  /users:
+    get:
+      tags:
+        - User
+      summary: Get All Users
+      operationId: getAllUsers
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: sizePage
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            'application/json':
+              schema:
+                $ref: '../model/users/UsersResultListDTO.yml'
+        '404':
+          description: NOT FOUND
+        '400':
+          description: BAD REQUEST
+  /users-reference:
+    get:
+      tags:
+        - User
+      summary: Retrieve an user
+      operationId: getUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            'application/json':
+              schema:
+                $ref: '../model/users/UserDTO.yml'
+        '404':
+          description: NOT FOUND
+        '400':
+          description: BAD REQUEST

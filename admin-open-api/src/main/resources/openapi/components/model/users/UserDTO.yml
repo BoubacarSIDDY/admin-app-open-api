@@ -1,6 +1,6 @@
 type: object
 properties:
-  idUser:
+  id:
     type: integer
     description: Fonctionnel id of the classe
     format: int32
@@ -24,4 +24,4 @@ properties:
     type: array
     items:
       $ref: '../produits/ProduitDTO.yml'
-      description: product list of user
+      description: products list of user

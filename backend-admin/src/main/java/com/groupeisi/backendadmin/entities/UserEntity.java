@@ -11,10 +11,10 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class AppUserEntity {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    private int id;
     @Column(nullable = false, length = 100)
     private String nom;
     @Column(nullable = false, length = 200)
@@ -24,8 +24,8 @@ public class AppUserEntity {
     @Column(nullable = false, length = 255)
     private String password;
     private int etat;
-    @OneToMany(mappedBy = "appUserEntity")
+    @OneToMany(mappedBy = "userEntity")
     private List<ProduitEntity> produitEntities;
 //    @ManyToMany(mappedBy = "appUserEntities")
-//    private List<AppRolesEntity> appRolesEntities;
+//    private List<RoleEntity> appRolesEntities;
 }

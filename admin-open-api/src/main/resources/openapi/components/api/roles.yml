@@ -1,0 +1,69 @@
+openapi: "3.0.0"
+
+info:
+  title: API Role
+  version: "1.0"
+  description: Role API
+
+servers:
+  - url: http://localhost:8080/backend-admin/api
+
+tags:
+  - name: AppRole
+    description: Produit specific data.
+
+paths:
+  /roles:
+    get:
+      tags:
+        - Role
+      summary: Get All Roles
+      operationId: getAllRoles
+      parameters:
+        - name: currentPage
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: sizePage
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            'application/json':
+              schema:
+                $ref: '../model/roles/RolesResultListDTO.yml'
+        '404':
+          description: NOT FOUND
+        '400':
+          description: BAD REQUEST
+  /roles-reference:
+    get:
+      tags:
+        - Role
+      summary: Retrieve a role
+      operationId: getRole
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: SUCCESS
+          content:
+            'application/json':
+              schema:
+                $ref: '../model/roles/RoleDTO.yml'
+        '404':
+          description: NOT FOUND
+        '400':
+          description: BAD REQUEST

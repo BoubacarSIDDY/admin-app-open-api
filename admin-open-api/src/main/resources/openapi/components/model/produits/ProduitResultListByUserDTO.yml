@@ -1,6 +1,6 @@
 type: object
 properties:
-  idUser:
+  id:
     type: integer
     description: Fonctionnel id of the customer
     format: int32

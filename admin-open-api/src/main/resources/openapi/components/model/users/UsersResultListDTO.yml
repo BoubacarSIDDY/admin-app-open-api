@@ -1,0 +1,7 @@
+type: object
+properties:
+  appRolesList:
+    type: array
+    description: The users's list
+    items:
+      $ref: './UserDTO.yml' # va indexer UserDTO

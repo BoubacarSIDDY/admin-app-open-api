@@ -43,6 +43,27 @@ paths:
           description: NOT FOUND
         '400':
           description: BAD REQUEST
+    post:  # post request
+      tags:
+        - Product
+      summary: Create a new product
+      operationId: createProduct
+      requestBody:
+        required: true
+        content:
+          'application/json':
+            schema:
+              $ref: '../model/produits/CreateProductRequestDTO.yml'
+      responses:
+        '201':
+          description: CREATED
+          content:
+            'application/json':
+              schema:
+                $ref: '../model/produits/ProduitDTO.yml'
+        '400':
+          description: BAD REQUEST
+
   /produits-reference:
     get:
       tags:
@@ -50,7 +71,7 @@ paths:
       summary: Retrieve an product
       operationId: getProduit
       parameters:
-        - name: idProduit
+        - name: id
           in: path
           required: true
           schema:

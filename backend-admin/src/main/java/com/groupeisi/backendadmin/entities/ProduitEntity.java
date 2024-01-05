@@ -7,10 +7,14 @@ import lombok.*;
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter @Builder
 public class ProduitEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProduit;
+    private int id;
     @Column(nullable = false, length = 150)
     private String name;
     private double qtyStock;
     @ManyToOne
-    private AppUserEntity appUserEntity;
+    private UserEntity userEntity;
+
+    public String toString(){
+        return "Products [name = "+name+"]";
+    }
 }
