@@ -7,7 +7,7 @@ properties:
   name:
     type: string
     description: the product's name
-  qteStock:
+  qtyStock:
     type: number
     description: the stock quantity
   user:

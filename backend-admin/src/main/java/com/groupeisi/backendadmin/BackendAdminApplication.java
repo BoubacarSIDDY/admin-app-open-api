@@ -9,6 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.math.BigDecimal;
+import java.util.stream.Stream;
+
 @SpringBootApplication
 public class BackendAdminApplication {
 
@@ -27,11 +30,14 @@ public class BackendAdminApplication {
 			userDTO.setPassword("passer123");
 			userService.save(userDTO);
 
-			// produits
-			ProduitDTO produitDTO = new ProduitDTO();
-			produitDTO.setName("Ordinateur");
-			produitDTO.setUser(userDTO);
-			produitService.save(produitDTO);
+			Stream.of("Ordinateur","Chaise","TV","Radio").forEach(name -> {
+				// save products
+				ProduitDTO produitDTO = new ProduitDTO();
+				produitDTO.setName(name);
+				produitDTO.setQteStock(BigDecimal.valueOf(Math.random()));
+				produitDTO.setUser(userDTO);
+				produitService.save(produitDTO);
+			});
 		};
 	}
 

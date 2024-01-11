@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @NoArgsConstructor @AllArgsConstructor
 public class ProduitsController implements ProduitApi {
     @Autowired
@@ -27,20 +26,16 @@ public class ProduitsController implements ProduitApi {
 
     @Override
     public ResponseEntity<ProduitsResultListDTO> getAllProducts(Integer currentPage, Integer sizePage) throws Exception {
-        ProduitsResultListDTO produitsResultList = new ProduitsResultListDTO();
-        List<ProduitDTO> produitDTOList= new ArrayList<>();
-        ProduitDTO produitDTO = new ProduitDTO();
-        produitDTO.setId(10);
-        produitDTO.setName("test produit");
-        produitDTOList.add(produitDTO);
+        return new ResponseEntity<>(produitService.getAllProducts(currentPage, sizePage), HttpStatus.OK);
+    }
 
-        produitDTO = new ProduitDTO();
-        produitDTO.setId(11);
-        produitDTO.setName("M2GL");
-        produitDTOList.add(produitDTO);
+    @Override
+    public ResponseEntity<ProduitDTO> createProduit(ProduitDTO produitDTO) throws Exception {
+        return new ResponseEntity<>(produitService.save(produitDTO), HttpStatus.CREATED);
+    }
 
-        produitsResultList.setProduitsList(produitDTOList);
-
-        return new ResponseEntity<>(produitsResultList, HttpStatus.OK);
+    @Override
+    public ResponseEntity<ProduitDTO> updateProduit(Integer id, ProduitDTO produitDTO) throws Exception {
+        return new ResponseEntity<>(produitService.update(id, produitDTO), HttpStatus.OK);
     }
 }

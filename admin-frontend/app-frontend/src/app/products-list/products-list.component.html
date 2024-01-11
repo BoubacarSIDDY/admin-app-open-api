@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Product's list</h1>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let produit of productList.produitsList">
+        <td>{{ produit.id }}</td>
+        <td>{{ produit.name }}</td>
+        <td>{{ produit.qteStock }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

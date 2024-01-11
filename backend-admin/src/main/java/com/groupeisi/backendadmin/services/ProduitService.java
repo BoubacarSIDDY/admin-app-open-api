@@ -5,6 +5,7 @@ import com.groupeisi.backendadmin.exceptions.RequestException;
 import com.groupeisi.backendadmin.mapping.ProduitMapper;
 import com.groupeisi.backendadmin.repositories.IProduitRepository;
 import com.groupeisi.generated.model.ProduitDTO;
+import com.groupeisi.generated.model.ProduitsResultListDTO;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -26,8 +27,17 @@ public class ProduitService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProduitDTO> getAllProduits(){
-        return iProduitRepository.findAll().stream().map(produitMapper::toProduitDTO).toList();
+    public ProduitsResultListDTO getAllProducts(Integer currentPage, Integer sizePage) {
+        List<ProduitDTO> produitDTOS = iProduitRepository.findAll()
+                .stream()
+                .map(produitMapper::toProduitDTO)
+                .toList();
+
+        // Assuming ProduitsResultListDTO has appropriate constructor or builder
+        ProduitsResultListDTO result = new ProduitsResultListDTO();
+        result.setProduitsList(produitDTOS);
+
+        return result;
     }
 
     @Transactional(readOnly = true)
