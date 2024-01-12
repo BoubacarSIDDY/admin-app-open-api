@@ -16,3 +16,8 @@ Notre projet spring boot est composé de ces packages:
 * **web** : pour les Rest controllers
   
 ***NB*** : on n'a pas de package DTO car c'est le projet **OPEN API** qui s'en chargera
+
+### 2. Projet OPEN API
+Pour notre projet Open API on créé un projet maven: dans notre cas c'est le projet **admin-open-api**
+Dans ce projet on va créér tous nos **DTO** avec des fichiers **.yml** qui seront ensuite utilisés dans notre application **Spring Boot**
+Ci-dessous un exemple de notre produit.yml
