@@ -292,3 +292,4 @@ Ci-dessous l'inclusion du projet `admin-open-api` comme dependence dans le fichi
 </plugin>
 ```
 ### 3. Projet Angular : admin-fronted
+Dans ce projet nous allons créer un projet maven et ensuite intégrer l'application angular dans ce projet, l'objectif de créer un projet maven est de nous permettre de béneficier de la puissance de maven pour pouvoir intégrer le projet `admin-open-api`
